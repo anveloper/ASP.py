@@ -1,5 +1,4 @@
 n, k = map(int, input().split())
-
 dp = [
     [[[0 for _ in range(436)] for _ in range(31)] for _ in range(31)] for _ in range(31)
 ]
