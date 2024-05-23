@@ -1,33 +1,31 @@
-n, k = map(int, input().split())
-dp = [
-    [[[0 for _ in range(436)] for _ in range(31)] for _ in range(31)] for _ in range(31)
-]
-
-ans = [0] * 31
+import sys
 
 
-def go(i, a, b, p):
-    if i == n:
-        if p == k:
-            return True
+def dfs(a, b, l, t):
+    global n, p
+    if l == n:
+        if t == p:
+            print("".join(s))
+            sys.exit()
         else:
-            return False
-    if dp[i][a][b][p]:
-        return False
-    dp[i][a][b][p] = True
-    ans[i] = "A"
-    if go(i + 1, a + 1, b, p):
-        return True
-    ans[i] = "B"
-    if go(i + 1, a, b + 1, p + a):
-        return True
-    ans[i] = "C"
-    if go(i + 1, a, b, p + a + b):
-        return True
-    return False
+            return
+
+    if memo.get((a, b, l, t)) is None:
+        memo[(a, b, l, t)] = True
+    else:
+        return
+
+    s[l] = "A"
+    dfs(a + 1, b, l + 1, t)
+    s[l] = "B"
+    dfs(a, b + 1, l + 1, t + a)
+    s[l] = "C"
+    dfs(a, b, l + 1, t + a + b)
 
 
-if go(0, 0, 0, 0):
-    print("".join(ans[0:n]))
-else:
-    print(-1)
+n, p = map(int, sys.stdin.readline().rstrip().split())
+memo = {}
+s = [""] * n
+
+dfs(0, 0, 0, 0)
+print(-1)
