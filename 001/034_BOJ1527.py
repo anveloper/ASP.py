@@ -1,19 +1,22 @@
 import sys
-from itertools import product
 
 input = sys.stdin.readline
+A, B = map(int, input().split())
+res = 0
 
-a, b = map(int, input().split())
-x = len(str(a))
-y = len(str(b))
 
-cnt = 0
+def check(n):
+    global res
+    num = int(n)
 
-for i in range(x, y + 1):
-    lst = list(product([4, 7], repeat=i))
-    for num in lst:
-        n = int("".join(map(str, num)))
-        if a <= n <= b:
-            cnt += 1
+    if num > 1e9:
+        return
+    if A <= num and num <= B:
+        res += 1
+    check(n + "4")
+    check(n + "7")
 
-print(cnt)
+
+check("0")
+
+print(res)
