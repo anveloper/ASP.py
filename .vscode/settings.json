@@ -1,4 +1,7 @@
 {
   "editor.defaultFormatter": "ms-python.black-formatter",
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  }
 }
